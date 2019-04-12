@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Particle07 Starter for NU's EECS 351-2 Course</title>
+  </head>
+  <!--  Create the HTML5 'canvas' element in which we will run WebGL
+  -->
+  <body onload="main()">
+    <!-- NOTE: background:black required to make alpha work properly -->
+    <canvas id="webgl" width="900" height="640" style='background: black; margin: 0 auto; display: block;'>
+      Please use a browser that supports "canvas"
+    </canvas>
+    <dl style='height: 200px; overflow: scroll'>
+      <p><b>Controls</b></p>
+      <dt>1, p</dt>
+      <dd>Pause (set runmode to 'stop')</dd>
+      <dt>2, space</dt>
+      <dd>Step (set runmode to 'step')</dd>
+      <dt>3, p</dt>
+      <dd>Run / unpause</dd>
+      <dt>r</dt>
+      <dd>"Soft" reset the particle playground (run all the systems' reset methods).</dd>
+      <dt>R</dt>
+      <dd>"Hard" reset the particle playground (reinitialize all the systems, both a "soft" reset and a complete replacement of the particle system data structures).</dd>
+      <dt>WASD or Arrow Keys</dt>
+      <dd>Move the camera in the horizontal plane</dd>
+      <dt>Shift / Ctrl</dt>
+      <dd>Move the camera "up" or "down" respectively</dd>
+    </dl>
+    <fieldset style="width: 300px; float: left;">
+      System 1 Forcefield Type
+      <select id='force'>
+        <option value='flower_funnel'>flower</option>
+        <option value='basic_funnel'>funnel</option>
+        <option value='high_magnet'>magnet</option>
+        <option value='sphere_push'>sphere</option>
+      </select>
+    </fieldset>
+    <fieldset style="width: 200px; float: left;">
+      Solver
+      <select id='solver'>
+        <option value='explicit_euler'>explicit euler</option>
+        <option value='implicit_euler'>implicit euler</option>
+        <option value='midpoint'>midpoint</option>
+        <option value='midpoint_explicit_avg'>explicit euler / midpoint average</option>
+        <option value='implicit_euler_avg'>explicit/implicit euler average</option>
+        <option value='implicit_midpoint'>implicit midpoint</option>
+        <option value='implicit_midpoint_double_step'>implicit mid double step</option>
+        <option value='implicit_midpoint_avg'>explicit mid/implicit euler avg</option>
+        <option value='implicit_midpoint_avg_double_step'> (above) double step</option>
+      </select>
+    </fieldset>
+    <label for='k'>Spring system constant:</label>
+    <input type='number' id='k' value='0.007' step='0.001' min='0.001'>
+  <!--  Load in the JavaScript libraries supplied by our textbook
+      (Matsuda et al., 2013 WebGL Programming Guide) that help us
+      with WebGL programming:
+  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script src="./lib/webgl-utils.js"></script>
+    <script src="./lib/webgl-debug.js"></script>
+    <script src="./lib/cuon-utils.js"></script>
+  <!-- We modified the library cuon-matrix.js from the book
+    "WebGL Programming Guide"(K. Matsuda, 2013),
+    to add matrix-stack and quaternion capabilities,
+    and renamed it cuon-matrix-quat.js -->
+    <script src="./lib/cuon-matrix-quat.js"></script>
+  <!--  Finally, load in our own JavaScript program file.
+  -->
+    <script src="./index.js"></script>
+  </body>
+</html>
